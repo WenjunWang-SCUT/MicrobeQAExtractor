@@ -1,6 +1,6 @@
 # MicrobeQAExtractor
 
-This repository provides the code for pathogenic microorganism knowledge extraction and the trained model weights, along with several illustrative test samples.
+This repository provides the MicrobeDB dataset, the code for pathogenic microorganism knowledge extraction, and the trained model weights.
 
 ## Models
 - [`deberta-v3-base-microbedb-v1`](https://drive.google.com/drive/folders/1t8Q6P_6WsSn6XRP9TZXBzaU5w_mgN0TK?usp=drive_link)
@@ -69,9 +69,7 @@ python run.py \
 ### Related work
 This code comes from related work: **Interpretation knowledge extraction for genetic testing via question-answer model**
 
-Authors: Wenjun Wang†, Huanxin Chen†, Hui Wang†, Lin Fang, Huan Wang, Yi Ding*, Yao Lu* and Qingyao Wu*
-
-†: Equal contributor
+Authors: Wenjun Wang, Huanxin Chen, Hui Wang, Lin Fang, Huan Wang, Yi Ding, Yao Lu* and Qingyao Wu
 
 *: Correspondent author
 
