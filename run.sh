@@ -1,6 +1,6 @@
 GPU=${1:-0}
 EPOCH=${2:-5}
-ROOT=${3:-"./dataset"}
+ROOT=${3:-"./MicrobeDB"}
 MODEL_CLASS=${4:-"BioModel"}
 OUTPUT_DIR=${5:-"./output"}
 python run.py \
