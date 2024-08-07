@@ -20,7 +20,7 @@ conda activate qa
 - tensorboardX : SummaryWriter module (`pip install tensorboardX`) -->
 
 ### Dataset
-Default dataset directory: `./dataset`. 
+Default dataset directory: `./MicrobeDB`. 
 Place `train-set.json` and `test-set.json` in dataset directory.
 
 *Tips: You can change the file names by `--train_file`, `--predict_file`*
