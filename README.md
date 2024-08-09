@@ -4,7 +4,7 @@ This repository provides the MicrobeDB dataset, the code for pathogenic microorg
 
 ## Models
 - [`deberta-v3-base-microbedb-v1`](https://drive.google.com/drive/folders/1t8Q6P_6WsSn6XRP9TZXBzaU5w_mgN0TK?usp=drive_link)
-- [`biobert_v1.1_microbedb_v1`](https://drive.google.com/drive/folders/1ZMQ90Bx1cNxQbIKaGyCrRZW9HSWWBMoM?usp=drive_link)
+- [`biobert_v1.1_microbedb_v1`](https://drive.google.com/drive/folders/1dcClcx9_vZcLblzhi8yPNNXG_GJ_jPaj?usp=drive_link)
 
 ## Configuration
 
