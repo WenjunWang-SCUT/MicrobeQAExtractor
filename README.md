@@ -30,7 +30,7 @@ Dataset directory: `./MicrobeDB`. Please place `train_set.json` and `test_set.js
 
 ### Download Pre-trained model
 - Download the pre-trained model
-- Place model in project's `models/` directory
+- Place the model files (such as weights, tokenizer, and configuration) in project's main directory under `<model_name>/`
 
 ### Run Commands
 `--data_dir` defines which directory the dataset is in
