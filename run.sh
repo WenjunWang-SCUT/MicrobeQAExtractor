@@ -1,6 +1,6 @@
 GPU=${1:-0}
 EPOCH=${2:-0}
-MODEL_PATH=${3:-"./models/deberta-v3-base-microbedb-v1"}
+MODEL_PATH=${3:-"./deberta-v3-base-microbedb-v1"}
 DATASET=${4:-"./MicrobeDB"}
 OUTPUT_DIR=${5:-"./output"}
 python run.py \
