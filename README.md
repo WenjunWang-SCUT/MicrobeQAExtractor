@@ -70,12 +70,12 @@ Or just run the preject by shell script `run.sh`
 
 ## Directory Structure
 
-- `/config`: Configuration files
-  - `args_init.py`: Parses command-line arguments for configuring model training and evaluation.
-  - `env_requirements.yaml`: Specifies the dependencies and environment settings required for model training and evaluation.
 - `/MicrobeDB`: Dataset files
   - `test_set.json`: Test dataset for evaluating the model.
   - `train_set.json`: Training dataset for training the model.
+- `/config`: Configuration files
+  - `args_init.py`: Parses command-line arguments for configuring model training and evaluation.
+  - `env_requirements.yaml`: Specifies the dependencies and environment settings required for model training and evaluation.
 - `/processors`: Processing scripts.
   - `postprocess.py`: Generates final predictions based on the model's logits output. 
   - `preprocess.py`: Preprocesses the MicrobeDB dataset, including ChatGPT augmentation, and converts a list of examples into a list of features that can be directly given as input to a QA model.
