@@ -28,9 +28,9 @@ Dataset directory: `./MicrobeDB`. Please place `train_set.json` and `test_set.js
 
 *2. Alternatively, you can download the training or test sets individually. For the training set (`train_set.json`) or the test set (`test_set.json`), navigate to the respective file’s page and click the **“Download raw file”** icon to download the specific file.*
 
-### Download Pre-trained model
+### Download Pre-trained Model
 - Download the pre-trained model
-- Place the model files (such as weights, tokenizer, and configuration) in project's main directory under `<model_name>/`
+- Place the model files (such as weights, tokenizer, and configuration) in the project's main directory under `<model_name>/`
 
 ### Run Commands
 `--data_dir` defines which directory the dataset is in
