@@ -90,7 +90,7 @@ Or just run the preject by shell script `run.sh`
 - `run.sh`: Shell script to automate the execution of `run.py` with configurable parameters.
 - `train_func.py`: Implements the training workflow, including model training, logging and monitoring, and model saving.
 
-## Related work
+## Related Work
 This code comes from related work: **Interpretation knowledge extraction for genetic testing via question-answer model**
 
 Authors: Wenjun Wang, Huanxin Chen, Hui Wang, Lin Fang, Huan Wang, Yi Ding, Yao Lu* and Qingyao Wu
