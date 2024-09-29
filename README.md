@@ -1,6 +1,6 @@
 # MicrobeQAExtractor
 
-This repository provides the MicrobeDB dataset, the pathogenic microorganism knowledge extraction code, and the trained model weights.
+This repository provides the MicrobeDB question-answering dataset, the pathogenic microorganism knowledge extraction code, and the trained model weights.
 
 ## Models
 - [`deberta-v3-base-microbedb-v1`](https://drive.google.com/drive/folders/1xuML3xoTqkQZAlKNoiUy2bFZ3laDXXuL?usp=drive_link)
