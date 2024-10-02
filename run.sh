@@ -4,9 +4,7 @@ MODEL_PATH=${3:-"./deberta-v3-base-microbedb-v1"}
 DATASET=${4:-"./MicrobeDB"}
 OUTPUT_DIR=${5:-"./output"}
 python run.py \
-    --model_type bert \
     --model_name_or_path $MODEL_PATH \
-    --load_remote_model \
     --model_class BioModel\
     --data_dir $DATASET \
     --max_seq_length 384 \
@@ -17,6 +15,7 @@ python run.py \
     --gpu $GPU \
     --do_train \
     --num_train_epochs $EPOCH \
+    --logging_every_epoch \
     --learning_rate 8e-6 \
     --per_gpu_train_batch_size 24 \
     --train_file train_set.json \
