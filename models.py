@@ -9,11 +9,13 @@ import torch.nn as nn
 from transformers import AutoModelForQuestionAnswering
 from transformers.modeling_outputs import QuestionAnsweringModelOutput
 
+# BioModel encapsulates the question-answering model (e.g., DeBERTaV3, BioBERT) from the Transformers library
 class BioModel(nn.Module):
-
     def __init__(self, model_name, config, args):
         super().__init__()
         self.args = args
+        
+        # Load the existing question-answering model from the pretrained model name
         self.qa_bert = AutoModelForQuestionAnswering.from_pretrained(
             model_name,
             from_tf=False,
@@ -34,6 +36,7 @@ class BioModel(nn.Module):
         is_training: bool=False,
     ) -> Union[Tuple[torch.Tensor], QuestionAnsweringModelOutput]:
 
+        # Prepare the input data based on whether the model is in training mode
         if is_training:
             inputs = {
                 "input_ids": batch[0],
@@ -51,6 +54,7 @@ class BioModel(nn.Module):
                 "output_hidden_states": True,
             }
 
+        # Forward pass through the question-answering model
         outputs =  self.qa_bert(**inputs)
         return self.process(batch, outputs)
 
@@ -64,7 +68,7 @@ class BiClassifyHeaderOne(nn.Module):
     def __init__(self, seq_len) -> None:
         super().__init__()
         self.seq_len = seq_len
-        self.fc = nn.Linear(self.seq_len * 768, 1) # 全连接层full connect TODO: 前一个参数不能是固定值，应该是计算出来的才对
+        self.fc = nn.Linear(self.seq_len * 768, 1) # 鍏ㄨ繛鎺ュ眰full connect TODO: 鍓嶄竴涓弬鏁颁笉鑳芥槸鍥哄畾鍊硷紝搴旇鏄绠楀嚭鏉ョ殑鎵嶅
         self.relu = nn.ReLU()
         self.sigmoid = nn.Sigmoid()
 
@@ -80,7 +84,7 @@ class BiClassifyHeaderTwo(nn.Module):
     def __init__(self, seq_len) -> None:
         super().__init__()
         self.seq_len = seq_len
-        self.fc = nn.Linear(self.seq_len * 768, 2) # 全连接层full connect TODO: 前一个参数不能是固定值，应该是计算出来的才对
+        self.fc = nn.Linear(self.seq_len * 768, 2) # 鍏ㄨ繛鎺ュ眰full connect TODO: 鍓嶄竴涓弬鏁颁笉鑳芥槸鍥哄畾鍊硷紝搴旇鏄绠楀嚭鏉ョ殑鎵嶅
         self.relu = nn.ReLU()
         self.softmax = nn.Softmax(dim=1)
 
@@ -96,7 +100,7 @@ class BiClassifyCNNHeader(nn.Module):
     def __init__(self, in_channel) -> None:
         super().__init__()
         self.conv1d = nn.Conv1d(in_channel, in_channel, 5, 1)
-        self.maxpool = nn.MaxPool1d(764) # TODO: 最好能设计成动态变化的
+        self.maxpool = nn.MaxPool1d(764) # TODO: 鏈�濂借兘璁捐鎴愬姩鎬佸彉鍖栫殑
         self.dropout = nn.Dropout(p=0.5)
         self.fc = nn.Linear(384, 2)
         self.relu = nn.ReLU()
@@ -129,7 +133,7 @@ class BioModelClassify(BioModel):
             batch: Tuple, 
             outputs
         ):
-        # TODO: 拿到outputs.hidden_states的最后一层，然后经过二分类头，输出output2，计算loss，加入到原先的loss，然后返回result
+        # TODO: 鎷垮埌outputs.hidden_states鐨勬渶鍚庝竴灞傦紝鐒跺悗缁忚繃浜屽垎绫诲ご锛岃緭鍑簅utput2锛岃绠條oss锛屽姞鍏ュ埌鍘熷厛鐨刲oss锛岀劧鍚庤繑鍥瀝esult
         pass
 
     def process(
