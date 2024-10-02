@@ -98,252 +98,257 @@ class BioProcessor(SquadV2Processor):
                                 answers=qa,
                             )
                             examples.append(example)
-                            if True:
 
-                                if augment:
-                                    if re.search("sensitive to?", question_text):
-                                        prefix = "What kinds of drugs is "
-                                        suffix = " sensitive to?"
-                                        start = question_text.find(prefix) + len(prefix)
-                                        end = question_text.find(suffix)
-                                        content = question_text[start:end]
-                                    
-                                        new_prefix = "Which drugs are effective against "
-                                        new_suffix = "?"
-                                        question_text = new_prefix + content + new_suffix
-                                        example_intergrate = SquadExample(
-                                            qas_id=qas_id,
-                                            question_text=question_text,
-                                            context_text=context_text,
-                                            answer_text=answer_text,
-                                            start_position_character=start_position_character,
-                                            title=title,
-                                            is_impossible=is_impossible,
-                                            answers=qa,
-                                        )
-                                        examples.append(example_intergrate)
-                                    
-                                        new_prefix = "What medications can be used to treat "
-                                        new_suffix = " infections?"
-                                        question_text = new_prefix + content + new_suffix
-                                        example_intergrate = SquadExample(
-                                            qas_id=qas_id,
-                                            question_text=question_text,
-                                            context_text=context_text,
-                                            answer_text=answer_text,
-                                            start_position_character=start_position_character,
-                                            title=title,
-                                            is_impossible=is_impossible,
-                                            answers=qa,
-                                        )
-                                        examples.append(example_intergrate)
-                                    
-                                        new_prefix = "Which antibiotics are recommended for treating "
-                                        new_suffix = " infections?"
-                                        question_text = new_prefix + content + new_suffix
-                                        example_intergrate = SquadExample(
-                                            qas_id=qas_id,
-                                            question_text=question_text,
-                                            context_text=context_text,
-                                            answer_text=answer_text,
-                                            start_position_character=start_position_character,
-                                            title=title,
-                                            is_impossible=is_impossible,
-                                            answers=qa,
-                                        )
-                                        examples.append(example_intergrate)
-                                    
-                                        new_prefix = "What drugs have been shown to be active against "
-                                        new_suffix = "?"
-                                        question_text = new_prefix + content + new_suffix
-                                        example_intergrate = SquadExample(
-                                            qas_id=qas_id,
-                                            question_text=question_text,
-                                            context_text=context_text,
-                                            answer_text=answer_text,
-                                            start_position_character=start_position_character,
-                                            title=title,
-                                            is_impossible=is_impossible,
-                                            answers=qa,
-                                        )
-                                        examples.append(example_intergrate)
-                                    
-                                        new_prefix = "What are the drugs that "
-                                        new_suffix = " is vulnerable to?"
-                                        question_text = new_prefix + content + new_suffix
-                                        example_intergrate = SquadExample(
-                                            qas_id=qas_id,
-                                            question_text=question_text,
-                                            context_text=context_text,
-                                            answer_text=answer_text,
-                                            start_position_character=start_position_character,
-                                            title=title,
-                                            is_impossible=is_impossible,
-                                            answers=qa,
-                                        )
-                                        examples.append(example_intergrate)
-                                    elif re.search("What kinds of diseases can", question_text):
-                                        prefix = "What kinds of diseases can "
-                                        suffix = " cause?"
-                                        start = question_text.find(prefix) + len(prefix)
-                                        end = question_text.find(suffix)
-                                        content = question_text[start:end]
-                                    
-                                        new_prefix = "What are the diseases that can be caused by "
-                                        new_suffix = "?"
-                                        question_text = new_prefix + content + new_suffix
-                                        example_intergrate = SquadExample(
-                                            qas_id=qas_id,
-                                            question_text=question_text,
-                                            context_text=context_text,
-                                            answer_text=answer_text,
-                                            start_position_character=start_position_character,
-                                            title=title,
-                                            is_impossible=is_impossible,
-                                            answers=qa,
-                                        )
-                                        examples.append(example_intergrate)
-                                    
-                                        new_prefix = "Which diseases are associated with "
-                                        new_suffix = " infection?"
-                                        question_text = new_prefix + content + new_suffix
-                                        example_intergrate = SquadExample(
-                                            qas_id=qas_id,
-                                            question_text=question_text,
-                                            context_text=context_text,
-                                            answer_text=answer_text,
-                                            start_position_character=start_position_character,
-                                            title=title,
-                                            is_impossible=is_impossible,
-                                            answers=qa,
-                                        )
-                                        examples.append(example_intergrate)
-                                    
-                                        new_prefix = "What health problems can result from "
-                                        new_suffix = " colonization?"
-                                        question_text = new_prefix + content + new_suffix
-                                        example_intergrate = SquadExample(
-                                            qas_id=qas_id,
-                                            question_text=question_text,
-                                            context_text=context_text,
-                                            answer_text=answer_text,
-                                            start_position_character=start_position_character,
-                                            title=title,
-                                            is_impossible=is_impossible,
-                                            answers=qa,
-                                        )
-                                        examples.append(example_intergrate)
-                                    
-                                        new_prefix = "What is the disease spectrum of "
-                                        new_suffix = "?"
-                                        question_text = new_prefix + content + new_suffix
-                                        example_intergrate = SquadExample(
-                                            qas_id=qas_id,
-                                            question_text=question_text,
-                                            context_text=context_text,
-                                            answer_text=answer_text,
-                                            start_position_character=start_position_character,
-                                            title=title,
-                                            is_impossible=is_impossible,
-                                            answers=qa,
-                                        )
-                                        examples.append(example_intergrate)
-                                    
-                                        new_prefix = "What types of illnesses can "
-                                        new_suffix = " contribute to?"
-                                        question_text = new_prefix + content + new_suffix
-                                        example_intergrate = SquadExample(
-                                            qas_id=qas_id,
-                                            question_text=question_text,
-                                            context_text=context_text,
-                                            answer_text=answer_text,
-                                            start_position_character=start_position_character,
-                                            title=title,
-                                            is_impossible=is_impossible,
-                                            answers=qa,
-                                        )
-                                        examples.append(example_intergrate)
-                                    elif re.search("Where does", question_text):
-                                        prefix = "Where does "
-                                        suffix = " normally exist?"
-                                        start = question_text.find(prefix) + len(prefix)
-                                        end = question_text.find(suffix)
-                                        content = question_text[start:end]
-                                    
-                                        new_prefix = "What are the typical habitats of "
-                                        new_suffix = "?"
-                                        question_text = new_prefix + content + new_suffix
-                                        example_intergrate = SquadExample(
-                                            qas_id=qas_id,
-                                            question_text=question_text,
-                                            context_text=context_text,
-                                            answer_text=answer_text,
-                                            start_position_character=start_position_character,
-                                            title=title,
-                                            is_impossible=is_impossible,
-                                            answers=qa,
-                                        )
-                                        examples.append(example_intergrate)
-                                    
-                                        new_prefix = "In what environments can "
-                                        new_suffix = " be found?"
-                                        question_text = new_prefix + content + new_suffix
-                                        example_intergrate = SquadExample(
-                                            qas_id=qas_id,
-                                            question_text=question_text,
-                                            context_text=context_text,
-                                            answer_text=answer_text,
-                                            start_position_character=start_position_character,
-                                            title=title,
-                                            is_impossible=is_impossible,
-                                            answers=qa,
-                                        )
-                                        examples.append(example_intergrate)
-                                    
-                                        new_prefix = "Where is "
-                                        new_suffix = " commonly present?"
-                                        question_text = new_prefix + content + new_suffix
-                                        example_intergrate = SquadExample(
-                                            qas_id=qas_id,
-                                            question_text=question_text,
-                                            context_text=context_text,
-                                            answer_text=answer_text,
-                                            start_position_character=start_position_character,
-                                            title=title,
-                                            is_impossible=is_impossible,
-                                            answers=qa,
-                                        )
-                                        examples.append(example_intergrate)
-                                    
-                                        new_prefix = "In what locations can "
-                                        new_suffix = " usually be found?"
-                                        question_text = new_prefix + content + new_suffix
-                                        example_intergrate = SquadExample(
-                                            qas_id=qas_id,
-                                            question_text=question_text,
-                                            context_text=context_text,
-                                            answer_text=answer_text,
-                                            start_position_character=start_position_character,
-                                            title=title,
-                                            is_impossible=is_impossible,
-                                            answers=qa,
-                                        )
-                                        examples.append(example_intergrate)
-                                    
-                                        new_prefix = "What are the common sites where "
-                                        new_suffix = " is known to inhabit?"
-                                        question_text = new_prefix + content + new_suffix
-                                        example_intergrate = SquadExample(
-                                            qas_id=qas_id,
-                                            question_text=question_text,
-                                            context_text=context_text,
-                                            answer_text=answer_text,
-                                            start_position_character=start_position_character,
-                                            title=title,
-                                            is_impossible=is_impossible,
-                                            answers=qa,
-                                        )
-                                        examples.append(example_intergrate)
+                            # Utilize new questions generated by ChatGPT that convey the same meaning but differ in phrasing to enhance the knowledge question diversity
+                            if augment:
+                                # Enhancing question diversity about drug sensitivity
+                                if re.search("sensitive to?", question_text):
+                                    prefix = "What kinds of drugs is "
+                                    suffix = " sensitive to?"
+                                    start = question_text.find(prefix) + len(prefix)
+                                    end = question_text.find(suffix)
+                                    content = question_text[start:end]
+                                
+                                    new_prefix = "Which drugs are effective against "
+                                    new_suffix = "?"
+                                    question_text = new_prefix + content + new_suffix
+                                    example_intergrate = SquadExample(
+                                        qas_id=qas_id,
+                                        question_text=question_text,
+                                        context_text=context_text,
+                                        answer_text=answer_text,
+                                        start_position_character=start_position_character,
+                                        title=title,
+                                        is_impossible=is_impossible,
+                                        answers=qa,
+                                    )
+                                    examples.append(example_intergrate)
+                                
+                                    new_prefix = "What medications can be used to treat "
+                                    new_suffix = " infections?"
+                                    question_text = new_prefix + content + new_suffix
+                                    example_intergrate = SquadExample(
+                                        qas_id=qas_id,
+                                        question_text=question_text,
+                                        context_text=context_text,
+                                        answer_text=answer_text,
+                                        start_position_character=start_position_character,
+                                        title=title,
+                                        is_impossible=is_impossible,
+                                        answers=qa,
+                                    )
+                                    examples.append(example_intergrate)
+                                
+                                    new_prefix = "Which antibiotics are recommended for treating "
+                                    new_suffix = " infections?"
+                                    question_text = new_prefix + content + new_suffix
+                                    example_intergrate = SquadExample(
+                                        qas_id=qas_id,
+                                        question_text=question_text,
+                                        context_text=context_text,
+                                        answer_text=answer_text,
+                                        start_position_character=start_position_character,
+                                        title=title,
+                                        is_impossible=is_impossible,
+                                        answers=qa,
+                                    )
+                                    examples.append(example_intergrate)
+                                
+                                    new_prefix = "What drugs have been shown to be active against "
+                                    new_suffix = "?"
+                                    question_text = new_prefix + content + new_suffix
+                                    example_intergrate = SquadExample(
+                                        qas_id=qas_id,
+                                        question_text=question_text,
+                                        context_text=context_text,
+                                        answer_text=answer_text,
+                                        start_position_character=start_position_character,
+                                        title=title,
+                                        is_impossible=is_impossible,
+                                        answers=qa,
+                                    )
+                                    examples.append(example_intergrate)
+                                
+                                    new_prefix = "What are the drugs that "
+                                    new_suffix = " is vulnerable to?"
+                                    question_text = new_prefix + content + new_suffix
+                                    example_intergrate = SquadExample(
+                                        qas_id=qas_id,
+                                        question_text=question_text,
+                                        context_text=context_text,
+                                        answer_text=answer_text,
+                                        start_position_character=start_position_character,
+                                        title=title,
+                                        is_impossible=is_impossible,
+                                        answers=qa,
+                                    )
+                                    examples.append(example_intergrate)
+
+                                # Enhancing question diversity about related diseases
+                                elif re.search("What kinds of diseases can", question_text):
+                                    prefix = "What kinds of diseases can "
+                                    suffix = " cause?"
+                                    start = question_text.find(prefix) + len(prefix)
+                                    end = question_text.find(suffix)
+                                    content = question_text[start:end]
+                                
+                                    new_prefix = "What are the diseases that can be caused by "
+                                    new_suffix = "?"
+                                    question_text = new_prefix + content + new_suffix
+                                    example_intergrate = SquadExample(
+                                        qas_id=qas_id,
+                                        question_text=question_text,
+                                        context_text=context_text,
+                                        answer_text=answer_text,
+                                        start_position_character=start_position_character,
+                                        title=title,
+                                        is_impossible=is_impossible,
+                                        answers=qa,
+                                    )
+                                    examples.append(example_intergrate)
+                                
+                                    new_prefix = "Which diseases are associated with "
+                                    new_suffix = " infection?"
+                                    question_text = new_prefix + content + new_suffix
+                                    example_intergrate = SquadExample(
+                                        qas_id=qas_id,
+                                        question_text=question_text,
+                                        context_text=context_text,
+                                        answer_text=answer_text,
+                                        start_position_character=start_position_character,
+                                        title=title,
+                                        is_impossible=is_impossible,
+                                        answers=qa,
+                                    )
+                                    examples.append(example_intergrate)
+                                
+                                    new_prefix = "What health problems can result from "
+                                    new_suffix = " colonization?"
+                                    question_text = new_prefix + content + new_suffix
+                                    example_intergrate = SquadExample(
+                                        qas_id=qas_id,
+                                        question_text=question_text,
+                                        context_text=context_text,
+                                        answer_text=answer_text,
+                                        start_position_character=start_position_character,
+                                        title=title,
+                                        is_impossible=is_impossible,
+                                        answers=qa,
+                                    )
+                                    examples.append(example_intergrate)
+                                
+                                    new_prefix = "What is the disease spectrum of "
+                                    new_suffix = "?"
+                                    question_text = new_prefix + content + new_suffix
+                                    example_intergrate = SquadExample(
+                                        qas_id=qas_id,
+                                        question_text=question_text,
+                                        context_text=context_text,
+                                        answer_text=answer_text,
+                                        start_position_character=start_position_character,
+                                        title=title,
+                                        is_impossible=is_impossible,
+                                        answers=qa,
+                                    )
+                                    examples.append(example_intergrate)
+                                
+                                    new_prefix = "What types of illnesses can "
+                                    new_suffix = " contribute to?"
+                                    question_text = new_prefix + content + new_suffix
+                                    example_intergrate = SquadExample(
+                                        qas_id=qas_id,
+                                        question_text=question_text,
+                                        context_text=context_text,
+                                        answer_text=answer_text,
+                                        start_position_character=start_position_character,
+                                        title=title,
+                                        is_impossible=is_impossible,
+                                        answers=qa,
+                                    )
+                                    examples.append(example_intergrate)
+
+                                # Enhancing question diversity about locations
+                                elif re.search("Where does", question_text):
+                                    prefix = "Where does "
+                                    suffix = " normally exist?"
+                                    start = question_text.find(prefix) + len(prefix)
+                                    end = question_text.find(suffix)
+                                    content = question_text[start:end]
+                                
+                                    new_prefix = "What are the typical habitats of "
+                                    new_suffix = "?"
+                                    question_text = new_prefix + content + new_suffix
+                                    example_intergrate = SquadExample(
+                                        qas_id=qas_id,
+                                        question_text=question_text,
+                                        context_text=context_text,
+                                        answer_text=answer_text,
+                                        start_position_character=start_position_character,
+                                        title=title,
+                                        is_impossible=is_impossible,
+                                        answers=qa,
+                                    )
+                                    examples.append(example_intergrate)
+                                
+                                    new_prefix = "In what environments can "
+                                    new_suffix = " be found?"
+                                    question_text = new_prefix + content + new_suffix
+                                    example_intergrate = SquadExample(
+                                        qas_id=qas_id,
+                                        question_text=question_text,
+                                        context_text=context_text,
+                                        answer_text=answer_text,
+                                        start_position_character=start_position_character,
+                                        title=title,
+                                        is_impossible=is_impossible,
+                                        answers=qa,
+                                    )
+                                    examples.append(example_intergrate)
+                                
+                                    new_prefix = "Where is "
+                                    new_suffix = " commonly present?"
+                                    question_text = new_prefix + content + new_suffix
+                                    example_intergrate = SquadExample(
+                                        qas_id=qas_id,
+                                        question_text=question_text,
+                                        context_text=context_text,
+                                        answer_text=answer_text,
+                                        start_position_character=start_position_character,
+                                        title=title,
+                                        is_impossible=is_impossible,
+                                        answers=qa,
+                                    )
+                                    examples.append(example_intergrate)
+                                
+                                    new_prefix = "In what locations can "
+                                    new_suffix = " usually be found?"
+                                    question_text = new_prefix + content + new_suffix
+                                    example_intergrate = SquadExample(
+                                        qas_id=qas_id,
+                                        question_text=question_text,
+                                        context_text=context_text,
+                                        answer_text=answer_text,
+                                        start_position_character=start_position_character,
+                                        title=title,
+                                        is_impossible=is_impossible,
+                                        answers=qa,
+                                    )
+                                    examples.append(example_intergrate)
+                                
+                                    new_prefix = "What are the common sites where "
+                                    new_suffix = " is known to inhabit?"
+                                    question_text = new_prefix + content + new_suffix
+                                    example_intergrate = SquadExample(
+                                        qas_id=qas_id,
+                                        question_text=question_text,
+                                        context_text=context_text,
+                                        answer_text=answer_text,
+                                        start_position_character=start_position_character,
+                                        title=title,
+                                        is_impossible=is_impossible,
+                                        answers=qa,
+                                    )
+                                    examples.append(example_intergrate)
 
         return examples
 
