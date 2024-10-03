@@ -33,18 +33,17 @@ Dataset directory: `./MicrobeDB`. Please place `train_set.json` and `test_set.js
 - Place the model files (such as weights, tokenizer, and configuration) in the project's main directory under `<model_name>/`
 
 ### Run Commands
-`--data_dir` defines which directory the dataset is in
 ```bash
 python run.py \
-    --model_name_or_path $MODEL_PATH \
-    --model_class BioModel \
-    --data_dir $DATASET \
-    --max_seq_length 384 \
-    --seed 0 \
-    --output_dir $OUTPUT_DIR \
-    --overwrite_output_dir \
-    --single_gpu \
-    --gpu $GPU \
+    --model_name_or_path $MODEL_PATH \ # Specifies the path to a pre-trained model for fine-tuning or an already trained model for evaluation
+    --model_class BioModel \ # Indicates the model class to use. The BioModel class serves as a unified interface or wrapper for working with both DeBERTaV3 and BioBERT models
+    --data_dir $DATASET \ # Specifies the directory containing the dataset, including training and testing files
+    --max_seq_length 384 \ # Sets the maximum length of each tokenized input. Longer texts will be chunked into segments of this length
+    --seed 0 \ # Sets the random seed
+    --output_dir $OUTPUT_DIR \ # Sets the output directory
+    --overwrite_output_dir \ # Allows overwriting the contents of the output directory if it already exists
+    --single_gpu \ # Indicates that a single GPU will be used for training or evaluation
+    --gpu $GPU \ # Specifies the GPU device ID to use
 # Train
     --do_train \
     --num_train_epochs $EPOCH \
