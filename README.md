@@ -36,7 +36,7 @@ Dataset directory: `./MicrobeDB`. Please place `train_set.json` and `test_set.js
 ```bash
 python run.py \
   --model_name_or_path $MODEL_PATH \ # Specifies the path to a pre-trained model for fine-tuning or an already trained model for evaluation
-  --model_class BioModel \ # Indicates the model class to use. The BioModel class serves as a unified interface or wrapper for working with both DeBERTaV3 and BioBERT models
+  --model_class BioModel \ # Indicates the model class to use. The BioModel class serves as a unified interface or wrapper for both DeBERTaV3 and BioBERT models
   --data_dir $DATASET \ # Specifies the directory containing the dataset, including training and testing files
   --max_seq_length 384 \ # Sets the maximum length of each tokenized input. Longer texts will be chunked into segments of this length
   --seed 0 \ # Sets the random seed
