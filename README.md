@@ -35,27 +35,28 @@ Dataset directory: `./MicrobeDB`. Please place `train_set.json` and `test_set.js
 ### Run Commands
 ```bash
 python run.py \
-    --model_name_or_path $MODEL_PATH \ # Specifies the path to a pre-trained model for fine-tuning or an already trained model for evaluation
-    --model_class BioModel \ # Indicates the model class to use. The BioModel class serves as a unified interface or wrapper for working with both DeBERTaV3 and BioBERT models
-    --data_dir $DATASET \ # Specifies the directory containing the dataset, including training and testing files
-    --max_seq_length 384 \ # Sets the maximum length of each tokenized input. Longer texts will be chunked into segments of this length
-    --seed 0 \ # Sets the random seed
-    --output_dir $OUTPUT_DIR \ # Sets the output directory
-    --overwrite_output_dir \ # Allows overwriting the contents of the output directory if it already exists
-    --single_gpu \ # Indicates that a single GPU will be used for training or evaluation
-    --gpu $GPU \ # Specifies the GPU device ID to use
+  --model_name_or_path $MODEL_PATH \ # Specifies the path to a pre-trained model for fine-tuning or an already trained model for evaluation
+  --model_class BioModel \ # Indicates the model class to use. The BioModel class serves as a unified interface or wrapper for working with both DeBERTaV3 and BioBERT models
+  --data_dir $DATASET \ # Specifies the directory containing the dataset, including training and testing files
+  --max_seq_length 384 \ # Sets the maximum length of each tokenized input. Longer texts will be chunked into segments of this length
+  --seed 0 \ # Sets the random seed
+  --output_dir $OUTPUT_DIR \ # Sets the output directory
+  --overwrite_output_dir \ # Allows overwriting the contents of the output directory if it already exists
+  --single_gpu \ # Indicates that a single GPU will be used for training or evaluation
+  --gpu $GPU \ # Specifies the GPU device ID to use
+
 # Train
-    --do_train \
-    --num_train_epochs $EPOCH \
-    --logging_every_epoch \
-    --learning_rate 8e-6 \
-    --per_gpu_train_batch_size 24 \
-    --train_file train_set.json \
-    --data_augment \
+  --do_train \
+  --num_train_epochs $EPOCH \
+  --logging_every_epoch \
+  --learning_rate 8e-6 \
+  --per_gpu_train_batch_size 24 \
+  --train_file train_set.json \
+  --data_augment \
 
 # Evaluation
-    --do_eval \
-    --predict_file test_set.json
+  --do_eval \
+  --predict_file test_set.json
 ```
 Or just run the preject by shell script `run.sh`
 ```bash
