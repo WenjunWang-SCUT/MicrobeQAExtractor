@@ -46,17 +46,17 @@ python run.py \
   --gpu $GPU \ # Specifies the GPU device ID to use
 
 # Train
-  --do_train \
-  --num_train_epochs $EPOCH \
-  --logging_every_epoch \
-  --learning_rate 8e-6 \
-  --per_gpu_train_batch_size 24 \
-  --train_file train_set.json \
-  --data_augment \
+  --do_train \ # Enables training mode to perform the model training process
+  --num_train_epochs $EPOCH \ # Sets the number of training epochs (iterations over the training dataset)
+  --logging_every_epoch \ # Logs training information during each epoch
+  --learning_rate 8e-6 \ # Sets the learning rate
+  --per_gpu_train_batch_size 24 \ # Sets the batch size per GPU for training
+  --train_file train_set.json \ # Specifies the training dataset file
+  --data_augment \ # Enables data augmentation for improving model generalization
 
 # Evaluation
-  --do_eval \
-  --predict_file test_set.json
+  --do_eval \ # Enables evaluation mode to perform prediction and evaluation on the test set
+  --predict_file test_set.json # Specifies the test dataset file
 ```
 Or just run the preject by shell script `run.sh`
 ```bash
