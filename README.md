@@ -60,10 +60,14 @@ python run.py \
 ```
 Or just run the preject by shell script `run.sh`
 ```bash
+# Grant execution permission to the script
 chmod +x run.sh
+
+# Run the script
+# Usage:
 ./run.sh [GPU] [EPOCH] [MODEL_PATH] [DATASET] [OUTPUT_DIR]
-# like
-./run.sh           # default: Use No.0 GPU, run 0 epoch, employ the trained deberta-v3-base-microbedb-v1 model to test, the dataset is MicrobeDB, the output directory is ./output
+# Like:
+./run.sh           # Default: Use No.0 GPU, run 0 epoch, employ the trained deberta-v3-base-microbedb-v1 model to test, the dataset is MicrobeDB, the output directory is ./output
 ./run.sh 1         # Use No.1 GPU
 ./run.sh 1 3      # Use No.1 GPU, run 3 epochs
 ...
