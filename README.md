@@ -3,11 +3,14 @@
 This repository provides the MicrobeDB question-answering dataset, the pathogenic microorganism knowledge extraction code, and the trained model weights.
 
 ## Models
+### Pre-trained Models for Fine-tuning
+- [`deberta-v3-base-squad2`](https://drive.google.com/drive/folders/18Vmqul6WatGQecvMSBK1aBLTsna4tdGo?usp=drive_link)
+- [`biobert_v1.1_pubmed_squad_v2`](https://drive.google.com/drive/folders/1XTDZgAo-I6og3qnfAv-3C9Lc85Sb4Udg?usp=drive_link)
+### Trained Models for Evaluation
 - [`deberta-v3-base-microbedb-v1`](https://drive.google.com/drive/folders/1xuML3xoTqkQZAlKNoiUy2bFZ3laDXXuL?usp=drive_link)
 - [`biobert_v1.1_microbedb_v1`](https://drive.google.com/drive/folders/1dcClcx9_vZcLblzhi8yPNNXG_GJ_jPaj?usp=drive_link)
 
 ## Configuration
-
 ### Environment Setup
 ```bash
 conda env create -f config/env_requirements.yaml
