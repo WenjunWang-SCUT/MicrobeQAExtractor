@@ -60,6 +60,7 @@ python run.py \
 ```
 Or just run the preject by shell script `run.sh`
 ```bash
+chmod +x run.sh
 ./run.sh [GPU] [EPOCH] [MODEL_PATH] [DATASET] [OUTPUT_DIR]
 # like
 ./run.sh           # default: Use No.0 GPU, run 0 epoch, employ the trained deberta-v3-base-microbedb-v1 model to test, the dataset is MicrobeDB, the output directory is ./output
