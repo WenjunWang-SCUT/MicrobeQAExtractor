@@ -18,11 +18,6 @@ conda env create -f config/env_requirements.yaml
 conda activate qa
 ```
 
-<!-- ### Additional Requirements
-- Transforms
-- pandas : Transforms the SQuAD prediction file into the BioASQ format (`pip install pandas`)
-- tensorboardX : SummaryWriter module (`pip install tensorboardX`) -->
-
 ### Dataset
 Dataset directory: `./MicrobeDB`. Please place `train_set.json` and `test_set.json` in this directory.
 
@@ -32,8 +27,8 @@ Dataset directory: `./MicrobeDB`. Please place `train_set.json` and `test_set.js
 
 *2. Alternatively, you can download the training or test sets individually. For the training set (`train_set.json`) or the test set (`test_set.json`), navigate to the respective file’s page and click the **“Download raw file”** icon to download the specific file.*
 
-### Download Pre-trained Model
-- Download the pre-trained model
+### Download Model
+- Download the pre-trained or trained model
 - Place the model files (such as weights, tokenizer, and configuration) in the project's main directory under `<model_name>/`
 
 ### Run Commands
@@ -68,7 +63,6 @@ Or just run the preject by shell script `run.sh`
 chmod +x run.sh
 
 # Run the script
-# Usage:
 ./run.sh [GPU] [EPOCH] [MODEL_PATH] [DATASET] [OUTPUT_DIR]
 # Like:
 ./run.sh           # Default: Use No.0 GPU, run 0 epoch, employ the trained deberta-v3-base-microbedb-v1 model to test, the dataset is MicrobeDB, the output directory is ./output
