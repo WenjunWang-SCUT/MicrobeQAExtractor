@@ -1,8 +1,3 @@
-"""
-Official evaluation script for ReCoRD v1.0.
-(Some functions are adopted from the SQuAD evaluation script.)
-"""
-
 from __future__ import print_function
 from collections import Counter
 import string
@@ -11,8 +6,8 @@ import re
 import json
 
 
+# Convert to lowercase and remove punctuation, articles ('a', 'an', 'the') and extra whitespace
 def normalize_answer(s):
-    """Lower text and remove punctuation, articles and extra whitespace."""
     def remove_articles(text):
         return re.sub(r'\b(a|an|the)\b', ' ', text)
 
@@ -28,24 +23,26 @@ def normalize_answer(s):
 
     return white_space_fix(remove_articles(remove_punc(lower(s))))
 
-
+# Compute the F1 score between the predicted and ground truth text
 def f1_score(prediction, ground_truth):
     prediction_tokens = normalize_answer(prediction).split()
     ground_truth_tokens = normalize_answer(ground_truth).split()
+    
     common = Counter(prediction_tokens) & Counter(ground_truth_tokens)
     num_same = sum(common.values())
     if num_same == 0:
         return 0
+    
     precision = 1.0 * num_same / len(prediction_tokens)
     recall = 1.0 * num_same / len(ground_truth_tokens)
     f1 = (2 * precision * recall) / (precision + recall)
     return f1
 
-
+# Check if the normalized prediction exactly matches the normalized ground truth
 def exact_match_score(prediction, ground_truth):
     return normalize_answer(prediction) == normalize_answer(ground_truth)
 
-
+# Calculate the maximum metric score
 def metric_max_over_ground_truths(metric_fn, prediction, ground_truths):
     scores_for_ground_truths = []
     for ground_truth in ground_truths:
@@ -53,55 +50,7 @@ def metric_max_over_ground_truths(metric_fn, prediction, ground_truths):
         scores_for_ground_truths.append(score)
     return max(scores_for_ground_truths)
 
-
-def eval_f1_em(answers, predictions):
-    total_f1 = total_em = total_num = solvable_total_num = solvable_f1 = solvable_em = 0.0
-    correct_qid = []
-    all_f1 = []
-
-    for qid in answers:
-        total_num += 1
-        if qid not in predictions:
-            message = 'Unanswered question {} will receive score 0.'.format(qid)
-            print(message)
-            continue
-
-        ground_truths = list(map(lambda x: x['text'], answers[qid]))
-        prediction = predictions[qid]['text']
-
-        if ground_truths:    
-            cur_em = metric_max_over_ground_truths(exact_match_score, prediction, ground_truths)
-            cur_f1 = metric_max_over_ground_truths(f1_score, prediction, ground_truths)
-            solvable_total_num += 1
-            solvable_f1 += cur_f1
-            solvable_em += cur_em
-        else:
-            if prediction:
-                cur_em = 0.0
-                cur_f1 = 0.0
-            else:
-                cur_em = 1.0
-                cur_f1 = 1.0
-
-        if int(cur_em) == 1:
-            correct_qid.append(qid)
-        total_em += cur_em
-        all_f1.append(cur_f1)
-        total_f1 += cur_f1
-
-    total_em = 100.0 * total_em / total_num
-    total_f1 = 100.0 * total_f1 / total_num
-    solvable_f1 = 100.0 * solvable_f1 / solvable_total_num
-    solvable_em = 100.0 * solvable_em / solvable_total_num
-
-    return {
-        'exact_match': total_em, 
-        'f1': total_f1, 'all_f1': all_f1, 
-        'solvable_f1': solvable_f1, 
-        'solvable_em': solvable_em,
-    }
-
-
+# Evaluate the prediction metrics, including F1 score and Exact match (EM) score
 def eval_metrics(answers, predictions, ques_type, output_dir="", prefix="", threshold=""):
     total_f1 = total_em = solvable_f1 = solvable_em = 0.0
     total_num = solvable_total_num = tp_num = fp_num = fn_num = tn_num = 0
@@ -119,12 +68,6 @@ def eval_metrics(answers, predictions, ques_type, output_dir="", prefix="", thre
         'Oxygen': {'total_num': 0, 'total_f1': 0, 'total_em': 0, 'solvable_num': 0, 'solvable_f1': 0, 'solvable_em': 0, 'tp': 0, 'tn': 0, 'fp': 0, 'fn': 0},
         'Morphology': {'total_num': 0, 'total_f1': 0, 'total_em': 0, 'solvable_num': 0, 'solvable_f1': 0, 'solvable_em': 0, 'tp': 0, 'tn': 0, 'fp': 0, 'fn': 0},
     }
-    
-    # for idx, example in enumerate(examples):
-    #     ques_name = getQuesType(example.question_text)
-    #     tmp = {'qas_id': example.qas_id, 'prediction': pre_json[example.qas_id], 'f1_score': f1_scores[idx]}
-    #     table[ques_name].append(tmp)
-
 
     for qid in answers:
         if qid not in predictions:
