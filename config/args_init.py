@@ -15,21 +15,22 @@ MODEL_CLASS_TABLE = {
     "BioModelClassifyCNN": BioModelClassifyCNN,
 }
 
+# Function to define and return the argument parser
 def get_parser():
+    # Create an ArgumentParser object
     parser = argparse.ArgumentParser()
 
+    # Add arguments for model path, output directory, and other settings
     parser.add_argument(
         "--model_name_or_path",
         default="biobert_v1.1_pubmed_squad_v2",
         type=str,
-        # required=True,
         help="Specifies the path to a pre-trained model for fine-tuning or an already trained model for evaluation.",
     )
     parser.add_argument(
         "--output_dir",
         default=os.path.join(os.getcwd(), "output"),
         type=str,
-        # required=True,
         help="Sets the output directory where the model checkpoints and predictions will be written.",
     )
     parser.add_argument(
@@ -39,8 +40,6 @@ def get_parser():
         choices=MODEL_CLASS_TABLE.keys(),
         help="Indicates the model class to use. The BioModel class serves as a unified interface or wrapper for both DeBERTaV3 and BioBERT models.",
     )
-    
-    # Other parameters
     parser.add_argument(
         "--data_dir",
         default=None,
@@ -186,4 +185,5 @@ def get_parser():
     parser.add_argument("--save_every_epoch", action="store_true", default=True, help="Save model every epoch.")
     parser.add_argument("--data_augment", action="store_true", default=False, help="Augment the training set.")
 
+    # Return the parsed arguments
     return  parser.parse_args()
