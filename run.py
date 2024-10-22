@@ -2,8 +2,8 @@ import os
 import torch
 import logging
 import datetime
-
 from transformers import AutoConfig, AutoTokenizer
+
 from config.args_init import get_parser,MODEL_CLASS_TABLE
 from tools.utils import set_seed
 from tools.load_examples import load_and_cache_examples
@@ -11,7 +11,7 @@ from train_func import train
 from eval_func import evaluate
 from models import BioModelClassify
 
-# Initialize a logger for tracking and recording messages during program execution.
+# Initialize a logger for tracking and recording messages during program execution
 logger = logging.getLogger("BIOMODEL")
 
 # Disable parallelism in the tokenizer to avoid potential resource conflicts during concurrent processing
