@@ -1,29 +1,23 @@
 import os
 import torch
 import logging
-
 from transformers.data.processors.squad import SquadV1Processor
-
 from processors.preprocess import BioProcessor, squad_convert_examples_to_features
-
-# from processors.distloss_preproc import BioProcessor, squad_convert_examples_to_features
-# from processors.distloss_preproc_plus import BioProcessor as BioProcessorDistloss, squad_convert_examples_to_features as squad_convert_examples_to_features_distloss
 
 
 logger = logging.getLogger("BIOMODEL")
 
-
+# Load data from dataset files or cache for training or evaluation
 def load_and_cache_examples(args, tokenizer, evaluate=False, output_examples=False):
 
     if args.local_rank not in [-1, 0] and not evaluate:
         # Make sure only the first process in distributed training process the dataset, and the others will use the cache
         torch.distributed.barrier()
 
-    # Load data features from cache or dataset file
+    # Construct the cached file name with relevant arguments
     input_dir = args.data_dir if args.data_dir else "."  
     name = os.path.basename(args.predict_file if evaluate else args.train_file)
     stem, _ = os.path.splitext(name)
-
     cached_features_file = os.path.join(
         input_dir,
         "cached_{}_{}_{}_{}{}".format(
@@ -35,7 +29,7 @@ def load_and_cache_examples(args, tokenizer, evaluate=False, output_examples=Fal
         ),
     )
 
-    # Init features and dataset from cache if it exists
+    # If the cached file exists and cache overwriting is not set, load the features from the cache
     if os.path.exists(cached_features_file) and not args.overwrite_cache:
         logger.info("Loading features from cached file %s", cached_features_file)
         features_and_dataset = torch.load(cached_features_file)
@@ -44,7 +38,7 @@ def load_and_cache_examples(args, tokenizer, evaluate=False, output_examples=Fal
             features_and_dataset["dataset"],
             features_and_dataset["examples"],
         )
-    else:
+    else: # Otherwise, process the data and create features from the dataset file
         logger.info("Creating features from dataset file at %s", input_dir)
 
         if not args.data_dir and ((evaluate and not args.predict_file) or (not evaluate and not args.train_file)):
@@ -52,9 +46,6 @@ def load_and_cache_examples(args, tokenizer, evaluate=False, output_examples=Fal
                 import tensorflow_datasets as tfds
             except ImportError:
                 raise ImportError("If not data_dir is specified, tensorflow_datasets needs to be installed.")
-
-            if args.with_neg:
-                logger.warn("tensorflow_datasets does not handle version 2 of SQuAD.")
 
             tfds_examples = tfds.load("squad")
             examples = SquadV1Processor().get_examples_from_dataset(tfds_examples, evaluate=evaluate)
@@ -67,6 +58,7 @@ def load_and_cache_examples(args, tokenizer, evaluate=False, output_examples=Fal
                 examples = processor.get_train_examples(args.data_dir, filename=args.train_file, augment=args.data_augment)
                 check_example(examples)
 
+        # Convert examples to features suitable for the model
         features, dataset = squad_convert_examples_to_features(
             examples=examples,
             tokenizer=tokenizer,
@@ -94,5 +86,6 @@ def load_and_cache_examples(args, tokenizer, evaluate=False, output_examples=Fal
         return dataset, examples, features
     return dataset
 
+# Log the number of examples loaded for training or evaluation
 def check_example(examples: list):
     logger.info(f"Num Examples: {len(examples)}")
