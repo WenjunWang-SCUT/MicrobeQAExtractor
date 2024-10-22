@@ -4,7 +4,6 @@ import torch
 import json
 import logging
 from tqdm import tqdm
-
 from torch.utils.data import DataLoader, SequentialSampler
 from transformers.data.processors.squad import SquadResult
 
@@ -14,6 +13,7 @@ from processors.postprocess import compute_predictions_logits
 from tools.utils import to_list, getQuesType, SquadImpossible
 from models import BioModelClassify
 
+# Get the logger "BIOMODEL"
 logger = logging.getLogger("BIOMODEL")
 
 # Evaluates a single batch of data
