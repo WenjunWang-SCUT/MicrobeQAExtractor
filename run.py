@@ -52,7 +52,7 @@ def main():
             )
         )
 
-    # Setup distant debugging if needed
+    # Set up distant debugging if needed
     if args.server_ip and args.server_port:
         import ptvsd
         print("Waiting for debugger attach")
