@@ -2,14 +2,10 @@ import math
 import json
 import logging
 import collections
-
 from transformers.models.bert import BasicTokenizer
 
+# Get the logger "BIOMODEL"
 logger = logging.getLogger("BIOMODEL")
-
-# def _word_offset_to_char_offset(example, word_offset):
-#     table = example.char_to_word_offset
-#     return table.index(word_offset)
 
 def _get_best_indexes(logits, n_best_size):
     """Get the n-best logits from a list."""
@@ -21,7 +17,6 @@ def _get_best_indexes(logits, n_best_size):
             break
         best_indexes.append(index_and_score[i][0])
     return best_indexes
-
 
 def _compute_softmax(scores):
     """Compute softmax probability over raw logits."""
@@ -44,7 +39,6 @@ def _compute_softmax(scores):
     for score in exp_scores:
         probs.append(score / total_sum)
     return probs
-
 
 def get_final_text(pred_text, orig_text, do_lower_case, verbose_logging=False):
     """Project the tokenized prediction back to the original text."""
@@ -138,7 +132,6 @@ def get_final_text(pred_text, orig_text, do_lower_case, verbose_logging=False):
 
     output_text = orig_text[orig_start_position : (orig_end_position + 1)]
     return output_text
-
 
 def compute_predictions_logits(
     all_examples,
@@ -270,20 +263,13 @@ def compute_predictions_logits(
                 orig_char_start = example.char_to_word_offset.index(orig_doc_start)
 
                 tok_text = tokenizer.convert_tokens_to_string(tok_tokens)
-
-                # tok_text = " ".join(tok_tokens)
-                #
-                # # De-tokenize WordPieces that have been split off.
-                # tok_text = tok_text.replace(" ##", "")
-                # tok_text = tok_text.replace("##", "")
-
+                
                 # Clean whitespace
                 tok_text = tok_text.strip()
                 tok_text = " ".join(tok_text.split())
                 orig_text = " ".join(orig_tokens)
 
                 final_text = get_final_text(tok_text, orig_text, do_lower_case, verbose_logging)
-
                 if final_text in seen_predictions:
                     continue
 
