@@ -14,7 +14,7 @@ try:
 except ImportError:
     from tensorboardX import SummaryWriter
     
-
+# Get the logger "BIOMODEL"
 logger = logging.getLogger("BIOMODEL")
 
 # Main training function for the model
@@ -206,7 +206,6 @@ def train(args, train_dataset, model, tokenizer):
         tb_writer.close()
 
     return global_step, tr_loss / global_step  # Return training step and average loss
-
 
 # Save the model weights, tokenizer, training arguments, and the optimizer and scheduler states
 def saveModel(output_dir, model, tokenizer, optimizer, scheduler, args):
